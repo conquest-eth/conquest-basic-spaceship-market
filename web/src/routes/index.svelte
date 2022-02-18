@@ -6,7 +6,7 @@
   import NavButton from '$lib/components/styled/navigation/NavButton.svelte';
   import Feature from '$lib/components/styled/Feature.svelte';
   import {url} from '$lib/utils/url';
-  const name = 'Jolly Roger';
+  const name = 'Spaceship Market';
 
   function _select(elem: HTMLElement) {
     const range = document.createRange();
@@ -45,7 +45,7 @@
         <NavButton
           blank={true}
           class="big secondary"
-          href="https://github.com/wighawag/jolly-roger"
+          href="https://github.com/wighawag/spaceship-market"
           label="Check it out on github!"
         >
           Github
@@ -55,12 +55,12 @@
 
     <div class="pt-3 pb-4 dark:bg-black bg-white">
       <h1 class="dark:text-gray-500 text-gray-500 m-4 font-semibold">Use it:</h1>
-      <code id="jolly-roger-command" on:click={select} class="mb-5 text-pink-600 font-black"
-        >npx degit wighawag/jolly-roger your-app-folder</code
+      <code id="spaceship-market-command" on:click={select} class="mb-5 text-pink-600 font-black"
+        >npx degit wighawag/spaceship-market your-app-folder</code
       >
       <p class="mt-6 text-gray-500">
         Find out more on
-        <a class="underline" href="https://github.com/wighawag/jolly-roger#readme" target="_blank" rel="noopener"
+        <a class="underline" href="https://github.com/wighawag/spaceship-market#readme" target="_blank" rel="noopener"
           >github</a
         >
       </p>
@@ -71,7 +71,7 @@
     <div class="text-center">
       <h2 class="text-3xl tracking-tight font-extrabold text-gray-900 dark:text-gray-100 sm:text-4xl">Showcase</h2>
       <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-400 sm:mt-4">
-        Here are examples of apps built using jolly-roger
+        Here are examples of apps built using spaceship-market
       </p>
     </div>
     <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">

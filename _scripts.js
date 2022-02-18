@@ -281,6 +281,14 @@ async function performAction(rawArgs) {
     execute(`newsh "npm run subgraph:dev"`);
     await performAction(['common:build']);
     await performAction(['contracts:seed', 'localhost', '--waitContracts']);
+  } else if (firstArg === 'dev:nonode') {
+    const {extra} = parseArgs(args, 0, {});
+    execute(`newsh "npm run common:dev"`);
+    execute(`newsh "npm run web:dev localhost -- --skipContracts --waitContracts ${extra.join(' ')}"`);
+    execute(`newsh "npm run contracts:local:dev -- --reset"`);
+    execute(`newsh "npm run subgraph:dev"`);
+    await performAction(['common:build']);
+    await performAction(['contracts:seed', 'localhost', '--waitContracts']);
   } else if (firstArg === 'start') {
     const {extra} = parseArgs(args, 0, {});
     await execute(`docker-compose down -v --remove-orphans`); // required else we run in race conditions

@@ -1,7 +1,7 @@
 {
-  "name": "jolly-roger",
+  "name": "spaceship-market",
   "version": "0.0.1",
-  "description": "Jolly Roger",
+  "description": "Spaceship Market",
   "private": true,
   "devDependencies": {
     "change-name": "^0.2.6",
@@ -18,8 +18,8 @@
     "preinstall": "npx only-allow pnpm",
     "---------------------- setup ----------------------": "",
     "prepare": "node ./.setup.js",
-    "boot": "npx change-name jolly-roger && pnpm install",
-    "set-name": "npx change-name jolly-roger",
+    "boot": "npx change-name spaceship-market && pnpm install",
+    "set-name": "npx change-name spaceship-market",
     "---------------------- common lib ----------------------": "compile the common library",
     "common:dev": "npm --prefix common-lib run dev",
     "common:build": "npm --prefix common-lib run build",
@@ -52,6 +52,7 @@
     "externals": "node ./_scripts.js externals",
     "externals:geth": "node ./_scripts.js externals:geth",
     "dev": "node ./_scripts.js dev",
+    "dev:nonode": "node ./_scripts.js dev:nonode",
     "start": "node ./_scripts.js start",
     "start:geth": "node ./_scripts.js start:geth"
   },

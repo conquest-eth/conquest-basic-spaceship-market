@@ -72,7 +72,7 @@ importers:
       hardhat-deploy: ^0.10.4
       hardhat-deploy-tenderly: ^0.1.0
       hardhat-gas-reporter: ^1.0.7
-      jolly-roger-common: workspace:*
+      spaceship-market-common: workspace:*
       mocha: ^9.2.0
       prettier: ^2.5.1
       prettier-plugin-solidity: ^1.0.0-beta.19
@@ -106,7 +106,7 @@ importers:
       hardhat-deploy: 0.10.4_hardhat@2.8.3
       hardhat-deploy-tenderly: 0.1.0_9d302e1e247ee55c34e65fa37b70e70f
       hardhat-gas-reporter: 1.0.7_hardhat@2.8.3
-      jolly-roger-common: link:../common-lib
+      spaceship-market-common: link:../common-lib
       mocha: 9.2.0
       prettier: 2.5.1
       prettier-plugin-solidity: 1.0.0-beta.19_prettier@2.5.1
@@ -172,7 +172,7 @@ importers:
       hash.js: ^1.1.7
       ipfs-deploy: ^11.1.0
       ipfs-gateway-emulator: 4.2.1-ipfs.1
-      jolly-roger-common: workspace:*
+      spaceship-market-common: workspace:*
       named-logs: ^0.1.0
       postcss: ^8.4.5
       postcss-load-config: ^3.1.1
@@ -223,7 +223,7 @@ importers:
       hash.js: 1.1.7
       ipfs-deploy: 11.1.0
       ipfs-gateway-emulator: 4.2.1-ipfs.1
-      jolly-roger-common: link:../common-lib
+      spaceship-market-common: link:../common-lib
       postcss: 8.4.5
       postcss-load-config: 3.1.1
       prepare-for-web: 0.1.7

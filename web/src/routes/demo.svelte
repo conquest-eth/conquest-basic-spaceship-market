@@ -5,7 +5,7 @@
   import {messages} from '$lib/messages/messages';
   import {wallet, flow, chain} from '$lib/blockchain/wallet';
   import {onMount} from 'svelte';
-  import {combine} from 'jolly-roger-common';
+  import {combine} from 'spaceship-market-common';
 
   let message = '';
   async function setMessage() {

@@ -44,8 +44,8 @@ const config = {
     adapter: adapter_ipfs({
       assets: outputFolder,
       pages: outputFolder,
-      removeSourceMap: pkg.name === 'jolly' + '-roger-web' ? false : true, // source map are exposed for jolly-roger
-      copyBeforeSourceMapRemoval: pkg.name === 'jolly' + '-roger-web' ? undefined : 'release', // source map are exposed for jolly-roger
+      removeSourceMap: pkg.name === 'jolly' + '-roger-web' ? false : true, // source map are exposed for spaceship-market
+      copyBeforeSourceMapRemoval: pkg.name === 'jolly' + '-roger-web' ? undefined : 'release', // source map are exposed for spaceship-market
       removeBuiltInServiceWorkerRegistration: true,
       injectPagesInServiceWorker: true,
       injectDebugConsole: true,

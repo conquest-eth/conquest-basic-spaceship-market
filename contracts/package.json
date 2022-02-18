@@ -40,7 +40,7 @@
     "hardhat-deploy": "^0.10.4",
     "hardhat-deploy-tenderly": "^0.1.0",
     "hardhat-gas-reporter": "^1.0.7",
-    "jolly-roger-common": "workspace:*",
+    "spaceship-market-common": "workspace:*",
     "mocha": "^9.2.0",
     "prettier": "^2.5.1",
     "prettier-plugin-solidity": "^1.0.0-beta.19",

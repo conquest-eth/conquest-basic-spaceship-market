@@ -1,6 +1,6 @@
 {
-  "name": "jolly-roger-subgraph",
-  "description": "Subgraph (thegraph.com) for Jolly Roger",
+  "name": "spaceship-market-subgraph",
+  "description": "Subgraph (thegraph.com) for Spaceship Market",
   "private": true,
   "version": "0.0.1",
   "devDependencies": {
