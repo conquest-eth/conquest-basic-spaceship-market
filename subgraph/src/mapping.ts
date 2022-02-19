@@ -1,17 +1,40 @@
 /* eslint-disable prefer-const */
-import {MessageChanged} from '../generated/GreetingsRegistry/GreetingsRegistryContract';
-import {MessageEntry} from '../generated/schema';
-// import {log} from '@graphprotocol/graph-ts';
+import {SpaceshipsForSale} from '../generated/BasicSpaceshipMarket/BasicSpaceshipMarketContract';
+import {FleetArrived, ExitComplete} from '../generated/OuterSpace/OuterSpaceContract';
+import {SpaceshipSale} from '../generated/schema';
+import {store} from '@graphprotocol/graph-ts';
 
-// const zeroAddress = '0x0000000000000000000000000000000000000000';
-
-export function handleMessageChanged(event: MessageChanged): void {
-  let id = event.params.user.toHex();
-  let entity = MessageEntry.load(id);
+export function handleSpaceshipsForSale(event: SpaceshipsForSale): void {
+  let id = event.params.location.toHex();
+  let entity = SpaceshipSale.load(id);
   if (!entity) {
-    entity = new MessageEntry(id);
+    entity = new SpaceshipSale(id);
   }
-  entity.message = event.params.message;
+  entity.seller = event.params.owner;
+  entity.pricePerUnit = event.params.pricePerUnit;
   entity.timestamp = event.block.timestamp;
+  entity.spaceshipsToKeep = event.params.spaceshipsToKeep;
   entity.save();
+}
+
+export function handleFleetArrived(event: FleetArrived): void {
+  let id = event.params.destination.toHex();
+  // TODO rename won to capture, new owner
+  //  and check if recorded properly
+  if (event.params.won) {
+    let entity = SpaceshipSale.load(id);
+    if (entity) {
+      if (entity.seller != event.params.fleetOwner) {
+        store.remove('SpaceshipSale', id);
+      }
+    }
+  }
+}
+
+export function handleExitComplete(event: ExitComplete): void {
+  let id = event.params.location.toHex();
+  let entity = SpaceshipSale.load(id);
+  if (entity) {
+    store.remove('SpaceshipSale', id);
+  }
 }

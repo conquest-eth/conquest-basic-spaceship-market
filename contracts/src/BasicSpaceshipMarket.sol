@@ -28,8 +28,16 @@ contract BasicSpaceshipMarket is IApprovalReceiver {
         _outerspace = outerspace;
     }
 
-    function onApprovedBy(address owner, bytes calldata data) external {
-        require(msg.sender == address(_outerspace), "APPROVED_BY_EXPECT_OUTERSPACE");
+    ///@dev useful to get data without any off-chain caching, but does not scale to many locations
+    function getSales(uint256[] calldata locations) external view returns (SpaceshipSale[] memory sales) {
+        sales = new SpaceshipSale[](locations.length);
+        for (uint256 i = 0; i < locations.length; i++) {
+            sales[i] = _sales[locations[i]];
+        }
+    }
+
+    function onApprovalForAllBy(address owner, bytes calldata data) external {
+        require(msg.sender == address(_outerspace), "APPROVEDBY_EXPECTS_OUTERSPACE");
         (uint256 location, uint184 pricePerUnit, uint32 spaceshipsToKeep) = abi.decode(
             data,
             (uint256, uint184, uint32)

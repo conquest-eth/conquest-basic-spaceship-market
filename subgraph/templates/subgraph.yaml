@@ -1,25 +1,48 @@
 specVersion: 0.0.3
-description: Spaceship Market
+description: Basic Spaceship Market
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: GreetingsRegistry
+    name: BasicSpaceshipMarket
     network: {{chainName}}
     source:
-      address: '{{contracts.GreetingsRegistry.address}}'
-      abi: GreetingsRegistryContract
-      startBlock: {{contracts.GreetingsRegistry.receipt.blockNumber}}
+      address: '{{contracts.BasicSpaceshipMarket.address}}'
+      abi: BasicSpaceshipMarketContract
+      startBlock: {{contracts.BasicSpaceshipMarket.receipt.blockNumber}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - MessageEntry
+        - SpaceshipSale
       abis:
-        - name: GreetingsRegistryContract
-          file: ./abis/GreetingsRegistry.json
+        - name: BasicSpaceshipMarketContract
+          file: ./abis/BasicSpaceshipMarket.json
       eventHandlers:
-        - event: MessageChanged(indexed address,string)
-          handler: handleMessageChanged
+        - event: SpaceshipsForSale(indexed uint256,indexed address,uint256,uint256)
+          handler: handleSpaceshipsForSale
+      file: ./src/mapping.ts
+  - kind: ethereum/contract
+    name: OuterSpace
+    network: {{chainName}}
+    source:
+      address: '{{contracts.OuterSpace.address}}'
+      abi: OuterSpaceContract
+      startBlock: {{contracts.OuterSpace.receipt.blockNumber}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - SpaceshipSale
+      abis:
+        - name: OuterSpaceContract
+          file: ./abis/OuterSpace.json
+      eventHandlers:
+        #// TODO use transfer event ?
+        - event: FleetArrived(indexed uint256,indexed address,indexed address,uint256,bool,uint32,uint32,uint32,uint32,bool,uint32,int40,uint32)
+          handler: handleFleetArrived
+        - event: ExitComplete(indexed address,indexed uint256,uint256)
+          handler: handleExitComplete
       file: ./src/mapping.ts

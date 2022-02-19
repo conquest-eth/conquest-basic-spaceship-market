@@ -3,7 +3,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const {spawn, exec} = require('child_process');
-const fs = require('fs');
+const fs = require('fs-extra');
 
 const commandlineArgs = process.argv.slice(2);
 
@@ -281,12 +281,21 @@ async function performAction(rawArgs) {
     execute(`newsh "npm run subgraph:dev"`);
     await performAction(['common:build']);
     await performAction(['contracts:seed', 'localhost', '--waitContracts']);
-  } else if (firstArg === 'dev:nonode') {
+  } else if (firstArg === 'dev:conquest') {
+    fs.emptyDirSync('./contracts/deployments/localhost');
+    await execute('rimraf web/src/lib/contracts.json');
+
+    fs.copySync('../conquest-eth/contracts/deployments/localhost', './contracts/deployments/localhost', {
+      recursive: true,
+    });
+
     const {extra} = parseArgs(args, 0, {});
+
     execute(`newsh "npm run common:dev"`);
-    execute(`newsh "npm run web:dev localhost -- --skipContracts --waitContracts ${extra.join(' ')}"`);
-    execute(`newsh "npm run contracts:local:dev -- --reset"`);
-    execute(`newsh "npm run subgraph:dev"`);
+    execute(`newsh "npm run web:dev localhost -- --skipContracts --waitContracts --port 3001"`); // ${extra.join(' ')}"`);
+    execute(`newsh "npm run contracts:local:dev"`);
+    execute(`newsh "wait-on web/src/lib/contracts.json && npm run subgraph:dev"`);
+
     await performAction(['common:build']);
     await performAction(['contracts:seed', 'localhost', '--waitContracts']);
   } else if (firstArg === 'start') {

@@ -1,5 +1,7 @@
-type MessageEntry @entity {
+type SpaceshipSale @entity {
   id: ID!
-  message: String!
+  seller: Bytes!
+  pricePerUnit: BigInt!
   timestamp: BigInt!
+  spaceshipsToKeep: BigInt!
 }

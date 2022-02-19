@@ -2,5 +2,5 @@
 pragma solidity 0.8.9;
 
 interface IApprovalReceiver {
-    function onApprovedBy(address owner, bytes calldata data) external;
+    function onApprovalForAllBy(address owner, bytes calldata data) external;
 }
