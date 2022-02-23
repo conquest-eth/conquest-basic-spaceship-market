@@ -10,10 +10,14 @@ export type State = {
   planet?: {
     info: {
       location: {id: string};
+      stats: {
+        name: string;
+        cap: number;
+      };
     };
     state: {
       owner?: string;
-      // TODO
+      numSpaceships: number;
     };
   };
 };
