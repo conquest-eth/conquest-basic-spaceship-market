@@ -1,0 +1,10 @@
+{
+  "name": "Basic Spaceships Marketplace",
+  "method": "iframe",
+  "actions": [
+    "show_planet"
+  ],
+  "datafeed": [
+    "scan_planets"
+  ]
+}

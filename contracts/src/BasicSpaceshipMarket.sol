@@ -11,6 +11,7 @@ contract BasicSpaceshipMarket is IApprovalReceiver {
         uint256 pricePerUnit,
         uint256 spaceshipsToKeep
     );
+    event SaleCancelled(uint256 indexed location, address indexed owner);
 
     event SpaceshipsSold(uint256 indexed location, address indexed fleetOwner, uint256 numSpaceships);
 
@@ -53,10 +54,20 @@ contract BasicSpaceshipMarket is IApprovalReceiver {
         _setSpaceshipsForSale(msg.sender, location, pricePerUnit, spaceshipsToKeep);
     }
 
+    function cancelSale(uint256 location) external {
+        address currentOwner = _outerspace.ownerOf(location);
+        require(currentOwner == msg.sender, "NOT_PLANET_OWNER");
+        _sales[location].pricePerUnit = 0;
+        _sales[location].spaceshipsToKeep = 0;
+        _sales[location].timestamp = 0;
+
+        emit SaleCancelled(location, currentOwner);
+    }
+
     function purchase(
         uint256 location,
         uint32 numSpaceships,
-        address payable planetOwner,
+        address payable fleetSender,
         bytes32 toHash
     ) external payable {
         SpaceshipSale memory sale = _sales[location];
@@ -66,13 +77,13 @@ contract BasicSpaceshipMarket is IApprovalReceiver {
 
         uint256 toPay = numSpaceships * sale.pricePerUnit;
         require(msg.value >= toPay, "NOT_ENOUGH_FUND");
-        planetOwner.transfer(toPay);
+        fleetSender.transfer(toPay);
         if (msg.value > toPay) {
             payable(msg.sender).transfer(msg.value - toPay);
         }
 
         IOuterSpace.FleetLaunch memory launch;
-        launch.fleetSender = planetOwner; // this is checked by outerspace
+        launch.fleetSender = fleetSender; // this is checked by outerspace
         launch.fleetOwner = msg.sender;
         launch.from = location;
         launch.quantity = numSpaceships;

@@ -153,12 +153,14 @@ importers:
       '@ethersproject/contracts': ^5.5.0
       '@ethersproject/providers': ^5.5.1
       '@ethersproject/solidity': ^5.5.0
+      '@ethersproject/units': ^5.5.0
       '@sentry/browser': ^6.16.1
       '@sentry/integrations': ^6.16.1
       '@sentry/tracing': ^6.16.1
       '@sveltejs/adapter-node': 1.0.0-next.58
       '@sveltejs/adapter-static': 1.0.0-next.24
       '@sveltejs/kit': 1.0.0-next.212
+      '@tailwindcss/forms': ^0.4.0
       '@typescript-eslint/eslint-plugin': ^5.9.0
       '@typescript-eslint/parser': ^5.9.0
       '@urql/core': 2.3.6
@@ -199,6 +201,7 @@ importers:
       '@ethersproject/contracts': 5.5.0
       '@ethersproject/providers': 5.5.1
       '@ethersproject/solidity': 5.5.0
+      '@ethersproject/units': 5.5.0
       '@sentry/browser': 6.16.1
       '@sentry/integrations': 6.16.1
       '@sentry/tracing': 6.16.1
@@ -213,6 +216,7 @@ importers:
       '@sveltejs/adapter-node': 1.0.0-next.58
       '@sveltejs/adapter-static': 1.0.0-next.24
       '@sveltejs/kit': 1.0.0-next.212_svelte@3.44.3
+      '@tailwindcss/forms': 0.4.0_tailwindcss@3.0.11
       '@typescript-eslint/eslint-plugin': 5.9.0_bd2fd93dbcc607ad2f21b784bccfe0c8
       '@typescript-eslint/parser': 5.9.0_eslint@8.6.0+typescript@4.5.4
       autoprefixer: 10.4.1_postcss@8.4.5
@@ -693,7 +697,6 @@ packages:
       '@ethersproject/bignumber': 5.5.0
       '@ethersproject/constants': 5.5.0
       '@ethersproject/logger': 5.5.0
-    dev: true
 
   /@ethersproject/wallet/5.5.0:
     resolution: {integrity: sha512-Mlu13hIctSYaZmUOo7r2PhNSd8eaMPVXe1wxrz4w4FCE4tDYBywDH+bAR1Xz2ADyXGwqYMwstzTrtUVIsKDO0Q==}
@@ -1529,6 +1532,15 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       defer-to-connect: 2.0.1
+    dev: true
+
+  /@tailwindcss/forms/0.4.0_tailwindcss@3.0.11:
+    resolution: {integrity: sha512-DeaQBx6EgEeuZPQACvC+mKneJsD8am1uiJugjgQK1+/Vt+Ai0GpFBC2T2fqnUad71WgOxyrZPE6BG1VaI6YqfQ==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: 1.4.3
+      tailwindcss: 3.0.11_cefe482e8d38053bbf3d5815e0c551b3
     dev: true
 
   /@tootallnate/once/1.1.2:
@@ -7747,7 +7759,7 @@ packages:
       merge-options: 3.0.4
       nanoid: 3.1.30
       native-abort-controller: 1.0.4_abort-controller@3.0.0
-      native-fetch: 3.0.0_node-fetch@2.6.7
+      native-fetch: 3.0.0_@achingbrain+node-fetch@2.6.7
       node-fetch: /@achingbrain/node-fetch/2.6.7
       react-native-fetch-api: 2.0.0
       stream-to-it: 0.2.4
@@ -9533,6 +9545,11 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /mini-svg-data-uri/1.4.3:
+    resolution: {integrity: sha512-gSfqpMRC8IxghvMcxzzmMnWpXAChSA+vy4cia33RgerMS8Fex95akUyQZPbxJJmeBGiGmK7n/1OpUX8ksRjIdA==}
+    hasBin: true
+    dev: true
+
   /minimalistic-assert/1.0.1:
     resolution: {integrity: sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==}
 
@@ -10011,7 +10028,7 @@ packages:
       node-fetch: '*'
     dev: true
 
-  /native-fetch/3.0.0_node-fetch@2.6.7:
+  /native-fetch/3.0.0_@achingbrain+node-fetch@2.6.7:
     resolution: {integrity: sha512-G3Z7vx0IFb/FQ4JxvtqGABsOTIqRWvgQz6e+erkB+JJD6LrszQtMozEHI4EkmgZQvnGHrpLVzUWk7t4sJCIkVw==}
     peerDependencies:
       node-fetch: '*'

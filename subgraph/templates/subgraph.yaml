@@ -22,6 +22,8 @@ dataSources:
       eventHandlers:
         - event: SpaceshipsForSale(indexed uint256,indexed address,uint256,uint256)
           handler: handleSpaceshipsForSale
+        - event: SaleCancelled(indexed uint256,indexed address)
+          handler: handleSaleCancelled
       file: ./src/mapping.ts
   - kind: ethereum/contract
     name: OuterSpace

@@ -1,5 +1,5 @@
 /* eslint-disable prefer-const */
-import {SpaceshipsForSale} from '../generated/BasicSpaceshipMarket/BasicSpaceshipMarketContract';
+import {SpaceshipsForSale, SaleCancelled} from '../generated/BasicSpaceshipMarket/BasicSpaceshipMarketContract';
 import {FleetArrived, ExitComplete} from '../generated/OuterSpace/OuterSpaceContract';
 import {SpaceshipSale} from '../generated/schema';
 import {store} from '@graphprotocol/graph-ts';
@@ -15,6 +15,14 @@ export function handleSpaceshipsForSale(event: SpaceshipsForSale): void {
   entity.timestamp = event.block.timestamp;
   entity.spaceshipsToKeep = event.params.spaceshipsToKeep;
   entity.save();
+}
+
+export function handleSaleCancelled(event: SaleCancelled): void {
+  let id = event.params.location.toHex();
+  let entity = SpaceshipSale.load(id);
+  if (entity) {
+    store.remove('SpaceshipSale', id);
+  }
 }
 
 export function handleFleetArrived(event: FleetArrived): void {

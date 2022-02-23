@@ -1,12 +1,9 @@
 <script lang="ts">
   import '../service-worker-handler';
   import '../global.css';
-  import {url} from '$lib/utils/url';
-  import NavBar from '$lib/components/styled/navigation/NavBar.svelte';
   import Notifications from '$lib/components/styled/notification/Notifications.svelte';
   import NoInstallPrompt from '$lib/components/generic/NoInstallPrompt.svelte';
   import NewVersionNotification from '$lib/components/styled/NewVersionNotification.svelte';
-  import DarkSwitch from '$lib/components/styled/DarkSwitch.svelte';
 
   import {appDescription, url as appUrl} from '../application.json';
 
@@ -34,17 +31,6 @@
 
 <NoInstallPrompt />
 <NewVersionNotification />
-
-<NavBar
-  links={[
-    {href: url(''), title: 'Home'},
-    {href: url('demo/'), title: 'Demo'},
-  ]}
-/>
-
-<div class="absolute top-0 right-0 m-2">
-  <DarkSwitch />
-</div>
 
 <slot />
 <Notifications />
