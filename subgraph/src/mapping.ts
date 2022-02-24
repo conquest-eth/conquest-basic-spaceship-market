@@ -2,10 +2,14 @@
 import {SpaceshipsForSale, SaleCancelled} from '../generated/BasicSpaceshipMarket/BasicSpaceshipMarketContract';
 import {FleetArrived, ExitComplete} from '../generated/OuterSpace/OuterSpaceContract';
 import {SpaceshipSale} from '../generated/schema';
-import {store} from '@graphprotocol/graph-ts';
+import {store, BigInt} from '@graphprotocol/graph-ts';
+
+export function toPlanetId(location: BigInt): string {
+  return '0x' + location.toHex().slice(2).padStart(64, '0');
+}
 
 export function handleSpaceshipsForSale(event: SpaceshipsForSale): void {
-  let id = event.params.location.toHex();
+  let id = toPlanetId(event.params.location);
   let entity = SpaceshipSale.load(id);
   if (!entity) {
     entity = new SpaceshipSale(id);
@@ -18,7 +22,7 @@ export function handleSpaceshipsForSale(event: SpaceshipsForSale): void {
 }
 
 export function handleSaleCancelled(event: SaleCancelled): void {
-  let id = event.params.location.toHex();
+  let id = toPlanetId(event.params.location);
   let entity = SpaceshipSale.load(id);
   if (entity) {
     store.remove('SpaceshipSale', id);
@@ -26,7 +30,7 @@ export function handleSaleCancelled(event: SaleCancelled): void {
 }
 
 export function handleFleetArrived(event: FleetArrived): void {
-  let id = event.params.destination.toHex();
+  let id = toPlanetId(event.params.destination);
   // TODO rename won to capture, new owner
   //  and check if recorded properly
   if (event.params.won) {
@@ -40,7 +44,7 @@ export function handleFleetArrived(event: FleetArrived): void {
 }
 
 export function handleExitComplete(event: ExitComplete): void {
-  let id = event.params.location.toHex();
+  let id = toPlanetId(event.params.location);
   let entity = SpaceshipSale.load(id);
   if (entity) {
     store.remove('SpaceshipSale', id);
