@@ -1,10 +1,19 @@
 {
-  "name": "Basic Spaceships Marketplace",
-  "method": "iframe",
-  "actions": [
-    "show_planet"
-  ],
-  "datafeed": [
-    "scan_planets"
-  ]
+  "name": "Basic Spaceship Marketplace",
+  "iframe": "./",
+  "config": {
+    "actions": [
+      {
+        "title": "Market",
+        "action": "show_planet",
+        "panelConditions": [
+          "owner",
+          "planet:basic_sale"
+        ],
+        "mapConditions": [
+          "planet:basic_sale"
+        ]
+      }
+    ]
+  }
 }
