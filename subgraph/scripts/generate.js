@@ -19,6 +19,7 @@ const chainNames = {
   4: 'rinkeby',
   5: 'goerli',
   42: 'kovan',
+  100: 'xdai',
   1337: 'mainnet',
   31337: 'mainnet',
 };

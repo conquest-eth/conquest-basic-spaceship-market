@@ -674,5 +674,8 @@
       "stateMutability": "view",
       "type": "function"
     }
-  ]
+  ],
+  "receipt": {
+    "blockNumber": 20869393
+  }
 }

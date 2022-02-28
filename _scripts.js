@@ -39,7 +39,15 @@ function moveAfterSimplify(srcPath, destPath) {
       fs.copySync(srcFilePath, destFilePath);
     } else if (fs.statSync(srcFilePath).isFile() && srcFilePath.endsWith('.json')) {
       const content = fs.readJSONSync(srcFilePath);
-      fs.writeJSONSync(destFilePath, {address: content.address, abi: content.abi}, {spaces: 2});
+      fs.writeJSONSync(
+        destFilePath,
+        {
+          address: content.address,
+          abi: content.abi,
+          receipt: content.receipt?.blockNumber ? {blockNumber: content.receipt?.blockNumber} : undefined,
+        },
+        {spaces: 2}
+      );
     }
   }
 }
