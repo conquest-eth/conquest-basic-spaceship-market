@@ -43,7 +43,7 @@ dataSources:
           file: ./abis/OuterSpace.json
       eventHandlers:
         #// TODO use transfer event ?
-        - event: FleetArrived(indexed uint256,indexed address,indexed address,uint256,bool,uint32,uint32,uint32,uint32,bool,uint32,int40,uint32)
+        - event: FleetArrived(indexed uint256,indexed address,indexed address,uint256,bool,uint32,uint32,uint32,uint32,bool,uint32,int40,uint32,uint32,uint32)
           handler: handleFleetArrived
         - event: ExitComplete(indexed address,indexed uint256,uint256)
           handler: handleExitComplete
