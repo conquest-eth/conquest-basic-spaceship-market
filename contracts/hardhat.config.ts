@@ -33,6 +33,10 @@ const config: HardhatUserConfig = {
       url: node_url('localhost'),
       accounts: accounts(),
     },
+    dev: {
+      url: node_url('gnosis_chain'),
+      accounts: accounts('gnosis_chain'),
+    },
     staging: {
       url: node_url('rinkeby'),
       accounts: accounts('rinkeby'),

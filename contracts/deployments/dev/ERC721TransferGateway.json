@@ -1,0 +1,87 @@
+{
+  "address": "0x43253e135EEf26aC7C9D4158EBda5f2dC536A7E8",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "contract IERC721",
+              "name": "tokenContract",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "tokens",
+              "type": "uint256[]"
+            }
+          ],
+          "internalType": "struct ERC721TransferGateway.TransfersPerContract[]",
+          "name": "tokenTransfers",
+          "type": "tuple[]"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "callData",
+          "type": "bytes"
+        }
+      ],
+      "name": "forward",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "contract IERC721",
+              "name": "tokenContract",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "tokens",
+              "type": "uint256[]"
+            }
+          ],
+          "internalType": "struct ERC721TransferGateway.TransfersPerContract[]",
+          "name": "tokenTransfers",
+          "type": "tuple[]"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "callData",
+          "type": "bytes"
+        }
+      ],
+      "name": "transferAndCall",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ]
+}

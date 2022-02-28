@@ -1,0 +1,230 @@
+{
+  "address": "0x294cC31140B1195A1Ab17210E28ac532BFc24509",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "contract IAlliance",
+          "name": "alliance",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "player",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "joining",
+          "type": "bool"
+        }
+      ],
+      "name": "AllianceLink",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+            },
+            {
+              "internalType": "uint32",
+              "name": "nonce",
+              "type": "uint32"
+            },
+            {
+              "internalType": "bytes",
+              "name": "signature",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct AllianceRegistry.PlayerSubmission[]",
+          "name": "playerSubmissions",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "addMultiplePlayersToAlliance",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "player",
+          "type": "address"
+        },
+        {
+          "internalType": "uint32",
+          "name": "nonce",
+          "type": "uint32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "signature",
+          "type": "bytes"
+        }
+      ],
+      "name": "addPlayerToAlliance",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "player",
+          "type": "address"
+        }
+      ],
+      "name": "ejectPlayerFromAlliance",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "player",
+          "type": "address"
+        },
+        {
+          "internalType": "contract IAlliance",
+          "name": "alliance",
+          "type": "address"
+        }
+      ],
+      "name": "getAllianceData",
+      "outputs": [
+        {
+          "internalType": "uint96",
+          "name": "joinTime",
+          "type": "uint96"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nonce",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "player",
+          "type": "address"
+        },
+        {
+          "internalType": "uint8",
+          "name": "slot",
+          "type": "uint8"
+        }
+      ],
+      "name": "getAllianceDataAtSlot",
+      "outputs": [
+        {
+          "internalType": "contract IAlliance",
+          "name": "alliance",
+          "type": "address"
+        },
+        {
+          "internalType": "uint96",
+          "name": "joinTime",
+          "type": "uint96"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nonce",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "player1",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "player2",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "havePlayersAnAllianceInCommon",
+      "outputs": [
+        {
+          "internalType": "contract IAlliance",
+          "name": "alliance",
+          "type": "address"
+        },
+        {
+          "internalType": "uint96",
+          "name": "joinTime",
+          "type": "uint96"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IAlliance",
+          "name": "alliance",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "joinAlliance",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "joined",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IAlliance",
+          "name": "alliance",
+          "type": "address"
+        }
+      ],
+      "name": "leaveAlliance",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
+}

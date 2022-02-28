@@ -4,6 +4,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const {spawn, exec} = require('child_process');
 const fs = require('fs-extra');
+const path = require('path');
 
 const commandlineArgs = process.argv.slice(2);
 
@@ -27,6 +28,20 @@ function getCurrentBranch() {
       reject(e);
     }
   });
+}
+
+function moveAfterSimplify(srcPath, destPath) {
+  const filenames = fs.readdirSync(srcPath);
+  for (const filename of filenames) {
+    const srcFilePath = path.join(srcPath, filename);
+    const destFilePath = path.join(destPath, filename);
+    if (filename === '.chainId') {
+      fs.copySync(srcFilePath, destFilePath);
+    } else if (fs.statSync(srcFilePath).isFile() && srcFilePath.endsWith('.json')) {
+      const content = fs.readJSONSync(srcFilePath);
+      fs.writeJSONSync(destFilePath, {address: content.address, abi: content.abi}, {spaces: 2});
+    }
+  }
 }
 
 async function getNetworkName() {
@@ -288,6 +303,8 @@ async function performAction(rawArgs) {
     fs.copySync('../conquest-eth/contracts/deployments/localhost', './contracts/deployments/localhost', {
       recursive: true,
     });
+    // fs.ensureDirSync(`./contracts/deployments/${network}`);
+    // moveAfterSimplify(`../conquest-eth/contracts/deployments/${network}`, `./contracts/deployments/${network}`);
 
     const {extra} = parseArgs(args, 0, {});
 
@@ -298,6 +315,16 @@ async function performAction(rawArgs) {
 
     await performAction(['common:build']);
     await performAction(['contracts:seed', 'localhost', '--waitContracts']);
+  } else if (firstArg === 'import:conquest') {
+    const {fixedArgs, extra} = parseArgs(args, 1, {});
+    const network = fixedArgs[0] || (await getNetworkName());
+    if (!network) {
+      console.error(`need to specify the network as first argument (or via env: NETWORK_NAME)`);
+      return;
+    }
+
+    fs.ensureDirSync(`./contracts/deployments/${network}`);
+    moveAfterSimplify(`../conquest-eth/contracts/deployments/${network}`, `./contracts/deployments/${network}`);
   } else if (firstArg === 'start') {
     const {extra} = parseArgs(args, 0, {});
     await execute(`docker-compose down -v --remove-orphans`); // required else we run in race conditions

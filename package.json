@@ -54,6 +54,7 @@
     "externals:geth": "node ./_scripts.js externals:geth",
     "dev": "node ./_scripts.js dev",
     "dev:conquest": "node ./_scripts.js dev:conquest",
+    "import:conquest": "node ./_scripts.js import:conquest",
     "start": "node ./_scripts.js start",
     "start:geth": "node ./_scripts.js start:geth"
   },
