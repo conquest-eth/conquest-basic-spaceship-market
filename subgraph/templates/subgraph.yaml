@@ -4,12 +4,12 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: BasicSpaceshipMarket
+    name: BasicContinuousSpaceshipSale
     network: {{chainName}}
     source:
-      address: '{{contracts.BasicSpaceshipMarket.address}}'
-      abi: BasicSpaceshipMarketContract
-      startBlock: {{contracts.BasicSpaceshipMarket.receipt.blockNumber}}
+      address: '{{contracts.BasicContinuousSpaceshipSale.address}}'
+      abi: BasicContinuousSpaceshipSaleContract
+      startBlock: {{contracts.BasicContinuousSpaceshipSale.receipt.blockNumber}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -17,8 +17,8 @@ dataSources:
       entities:
         - SpaceshipSale
       abis:
-        - name: BasicSpaceshipMarketContract
-          file: ./abis/BasicSpaceshipMarket.json
+        - name: BasicContinuousSpaceshipSaleContract
+          file: ./abis/BasicContinuousSpaceshipSale.json
       eventHandlers:
         - event: SpaceshipsForSale(indexed uint256,indexed address,uint256,uint256)
           handler: handleSpaceshipsForSale

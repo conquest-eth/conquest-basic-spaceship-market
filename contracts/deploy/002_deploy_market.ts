@@ -7,7 +7,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   const OuterSpace = await hre.deployments.get('OuterSpace');
 
-  await deploy('BasicSpaceshipMarket', {
+  await deploy('BasicContinuousSpaceshipSale', {
     from: deployer,
     proxy: true, // TODO remove
     args: [OuterSpace.address],
@@ -16,4 +16,4 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   });
 };
 export default func;
-func.tags = ['BasicSpaceshipMarket'];
+func.tags = ['BasicContinuousSpaceshipSale'];

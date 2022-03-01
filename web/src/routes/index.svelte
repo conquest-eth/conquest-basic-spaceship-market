@@ -36,7 +36,7 @@
     event.preventDefault();
     event.stopPropagation();
 
-    // const txData = wallet.contracts.BasicSpaceshipMarket.populateTransaction.setSpaceshipsForSale(
+    // const txData = wallet.contracts.BasicContinuousSpaceshipSale.populateTransaction.setSpaceshipsForSale(
     //   $state.planet.info.location.id,
     //   BigNumber.from(pricePerUnit).mul('1000000000000000000'),
     //   numSpaceships
@@ -46,9 +46,9 @@
       $contractsInfos.contracts.OuterSpace.address,
       $contractsInfos.contracts.OuterSpace.abi
     );
-    const BasicSpaceshipMarket = new Contract(
-      $contractsInfos.contracts.BasicSpaceshipMarket.address,
-      $contractsInfos.contracts.BasicSpaceshipMarket.abi
+    const BasicContinuousSpaceshipSale = new Contract(
+      $contractsInfos.contracts.BasicContinuousSpaceshipSale.address,
+      $contractsInfos.contracts.BasicContinuousSpaceshipSale.abi
     );
 
     const saleCallData = defaultAbiCoder.encode(
@@ -57,7 +57,7 @@
     );
 
     const txData = await OuterSpace.populateTransaction.setApprovalForAllIfNeededAndCall(
-      BasicSpaceshipMarket.address,
+      BasicContinuousSpaceshipSale.address,
       saleCallData
     );
 
@@ -68,12 +68,12 @@
     event.preventDefault();
     event.stopPropagation();
 
-    const BasicSpaceshipMarket = new Contract(
-      $contractsInfos.contracts.BasicSpaceshipMarket.address,
-      $contractsInfos.contracts.BasicSpaceshipMarket.abi
+    const BasicContinuousSpaceshipSale = new Contract(
+      $contractsInfos.contracts.BasicContinuousSpaceshipSale.address,
+      $contractsInfos.contracts.BasicContinuousSpaceshipSale.abi
     );
 
-    const txData = await BasicSpaceshipMarket.populateTransaction.cancelSale($context.planet.info.location.id);
+    const txData = await BasicContinuousSpaceshipSale.populateTransaction.cancelSale($context.planet.info.location.id);
     context.send_tx(txData as {to: string; data: string});
   }
 
@@ -84,11 +84,11 @@
     const location = $context.planet.info.location.id;
     const fleetSender = $context.planet.state.owner;
     const data = {
-      abi: $contractsInfos.contracts.BasicSpaceshipMarket.abi.filter((v) => v.name === 'purchase')[0],
+      abi: $contractsInfos.contracts.BasicContinuousSpaceshipSale.abi.filter((v) => v.name === 'purchase')[0],
       numSpaceships: numToBuy,
       location,
       pricePerUnit: sale.pricePerUnit.toString(),
-      contractAddress: $contractsInfos.contracts.BasicSpaceshipMarket.address,
+      contractAddress: $contractsInfos.contracts.BasicContinuousSpaceshipSale.address,
       numSpaceshipsToKeep: sale.spaceshipsToKeep,
       args: [location, '{numSpaceships}', fleetSender, '{toHash}'],
       fleetSender,
