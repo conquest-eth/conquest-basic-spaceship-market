@@ -477,8 +477,5 @@
       "stateMutability": "nonpayable",
       "type": "function"
     }
-  ],
-  "receipt": {
-    "blockNumber": 20869386
-  }
+  ]
 }
