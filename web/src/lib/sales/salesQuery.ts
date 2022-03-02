@@ -20,6 +20,7 @@ export type SaleQueryState = {
   pricePerUnit: string;
   timestamp: string;
   spaceshipsToKeep: string;
+  spaceshipsLeftToSell: string;
 };
 
 export type SalesQueryResult = {
@@ -32,6 +33,7 @@ export type SaleState = {
   pricePerUnit: BigNumber;
   timestamp: number;
   spaceshipsToKeep: number;
+  spaceshipsLeftToSell: number;
 };
 
 export type SalesState = {
@@ -58,6 +60,7 @@ export class SalesQueryStore implements QueryStore<SalesState> {
     pricePerUnit
     timestamp
     spaceshipsToKeep
+    spaceshipsLeftToSell
   }
 }`,
       chainTempo, // replayTempo, //
@@ -101,6 +104,7 @@ export class SalesQueryStore implements QueryStore<SalesState> {
           seller: v.seller,
           pricePerUnit: BigNumber.from(v.pricePerUnit),
           spaceshipsToKeep: parseInt(v.spaceshipsToKeep),
+          spaceshipsLeftToSell: parseInt(v.spaceshipsLeftToSell),
           timestamp: parseInt(v.timestamp),
         };
       }),

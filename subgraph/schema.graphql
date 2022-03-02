@@ -4,4 +4,5 @@ type SpaceshipSale @entity {
   pricePerUnit: BigInt!
   timestamp: BigInt!
   spaceshipsToKeep: BigInt!
+  spaceshipsLeftToSell: BigInt!
 }

@@ -12,6 +12,8 @@
   // import {onMount} from 'svelte';
   import {contractsInfos} from '$lib/blockchain/contracts';
 
+  $: maxSell = $context.planet ? 2 * $context.planet.info.stats.cap + 1 : 0;
+
   chainTempo.startOrUpdateProvider(wallet.provider);
 
   $: sale =
@@ -21,12 +23,23 @@
 
   $: numForSale =
     sale && $context.planet?.state?.numSpaceships
-      ? Math.max(0, $context.planet.state.numSpaceships - sale.spaceshipsToKeep)
+      ? Math.min(Math.max(0, $context.planet.state.numSpaceships - sale.spaceshipsToKeep), sale.spaceshipsLeftToSell)
       : 0;
 
-  let numSpaceships = 0;
-  let pricePerUnit = 1;
+  let numSpaceshipsToKeep = 0;
+  let numSpaceshipsToSell = 0;
+  let pricePer10000 = 0.01; // TODO value from config
   let numToBuy = 0;
+
+  let lastPlanet: string | undefined;
+  context.subscribe((ctx) => {
+    if (ctx.planet?.info.location.id !== lastPlanet) {
+      lastPlanet = ctx.planet?.info.location.id;
+      if (lastPlanet) {
+        numSpaceshipsToKeep = Math.floor(ctx.planet.info.stats.cap / 2);
+      }
+    }
+  });
 
   // onMount(() => {
   //   numSpaceships = Math.floor(($context.planet?.state?.numSpaceships || 0) / 2);
@@ -39,7 +52,8 @@
     // const txData = wallet.contracts.BasicSpaceshipMarket.populateTransaction.setSpaceshipsForSale(
     //   $state.planet.info.location.id,
     //   BigNumber.from(pricePerUnit).mul('1000000000000000000'),
-    //   numSpaceships
+    //   numSpaceshipsToKeep,
+    //   numSpaceshipsToSell
     // );
 
     const OuterSpace = new Contract(
@@ -52,8 +66,13 @@
     );
 
     const saleCallData = defaultAbiCoder.encode(
-      ['uint256', 'uint184', 'uint32'],
-      [$context.planet.info.location.id, parseEther(pricePerUnit.toFixed(18)), numSpaceships]
+      ['uint256', 'uint144', 'uint32', 'uint40'],
+      [
+        $context.planet.info.location.id,
+        parseEther((pricePer10000 / 10000).toFixed(18)),
+        numSpaceshipsToKeep,
+        numSpaceshipsToSell,
+      ]
     );
 
     const txData = await OuterSpace.populateTransaction.setApprovalForAllIfNeededAndCall(
@@ -90,6 +109,7 @@
       pricePerUnit: sale.pricePerUnit.toString(),
       contractAddress: $contractsInfos.contracts.BasicSpaceshipMarket.address,
       numSpaceshipsToKeep: sale.spaceshipsToKeep,
+      numSpaceshipsAvailable: sale.spaceshipsLeftToSell,
       args: [location, '{numSpaceships}', fleetSender, '{toHash}'],
       fleetSender,
       msgValue: '{numSpaceships*pricePerUnit}',
@@ -117,6 +137,9 @@
         <p>
           available for sale : {numForSale}
         </p>
+        <p>
+          (left : {sale.spaceshipsLeftToSell})
+        </p>
 
         <hr class="m-2" />
         <hr class="m-2" />
@@ -134,40 +157,84 @@
 
         <p>Or do you want to update the sale?</p>
       {:else}
-        <p>Put spaceships for sale</p>
+        <p><strong>Put spaceships for sale</strong></p>
       {/if}
 
+      <hr class="m-2" />
       <form>
         <div>
-          <label for="numSpaceships">Num of spaceship to keep on planet at all time: </label>
+          <label for="numSpaceshipsToKeep">
+            <p><strong>Num of spaceship to keep</strong> on planet at all time:</p>
+            <p>(only sell spaceship when there is more)</p>
+          </label>
           <div>
             <input
               class="text-cyan-300 bg-cyan-300"
               type="range"
-              id="numSpaceships"
-              name="numSpaceships"
-              bind:value={numSpaceships}
+              id="numSpaceshipsToKeep"
+              name="numSpaceshipsToKeep"
+              bind:value={numSpaceshipsToKeep}
               min="0"
-              max={$context.planet.state.numSpaceships}
+              max={Math.max($context.planet.state.numSpaceships, $context.planet.info.stats.cap)}
             />
             <p>
-              {numSpaceships}{#if numSpaceships >= $context.planet.info.stats.cap}<span class="text-red-500"
-                  >(can only sale if over capacity)</span
-                >{/if}{#if numSpaceships <= 0}<span class="text-red-500"
+              => <strong>{numSpaceshipsToKeep}</strong>{#if numSpaceshipsToKeep >= $context.planet.info.stats.cap}<span
+                  class="text-red-500">(can only sale if over capacity)</span
+                >{/if}{#if numSpaceshipsToKeep <= 0}<span class="text-red-500"
                   >(a buyer can thus buy all spaceship and put the planet at risk)</span
                 >{/if}
             </p>
           </div>
         </div>
+
+        <hr class="m-2" />
+
         <div>
-          <label for="pricePerUnit">Price per spaceship ({nativeTokenSymbol}) </label>
+          <label for="numSpaceshipsToSell"
+            ><p><strong>Num of spaceship to sell</strong> (stop selling afterward)</p>
+            {#if numSpaceshipsToSell < maxSell}<p>
+                (assuming all sell, you ll get {(pricePer10000 * numSpaceshipsToSell) / 10000}
+                {nativeTokenSymbol})
+              </p>{/if}
+          </label>
           <div>
-            <input type="number" id="pricePerUnit" name="pricePerUnit" bind:value={pricePerUnit} />
+            <input
+              class="text-cyan-300 bg-cyan-300"
+              type="range"
+              id="numSpaceshipsToSell"
+              name="numSpaceshipsToSell"
+              bind:value={numSpaceshipsToSell}
+              min="0"
+              max={maxSell}
+            />
+            <p>
+              => <strong
+                >{#if numSpaceshipsToSell === maxSell} Infinite {:else} {numSpaceshipsToSell}{/if}</strong
+              >
+            </p>
+          </div>
+        </div>
+
+        <hr class="m-2" />
+
+        <div>
+          <label for="pricePer10000">Price per <strong>10,000</strong> spaceship ({nativeTokenSymbol}) </label>
+          <div>
+            <input
+              type="number"
+              id="pricePer10000"
+              name="pricePer10000"
+              min="0"
+              step="0.01"
+              bind:value={pricePer10000}
+            />
+            <!-- <input type="number" id="pricePer10000" name="pricePer10000" min="0.01" step="0.01" bind:value={pricePer10000} /> -->
           </div>
         </div>
         <div>
           <button
             on:click={submit}
+            disabled={numSpaceshipsToSell === 0}
             type="submit"
             class="m-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >Put For Sale</button
@@ -183,6 +250,8 @@
           {nativeTokenSymbol}
         </p>
       {:else}
+        <p><strong>Purchase spaceships</strong></p>
+        <hr class="m-2" />
         <p>How many spaceships do you want to purchase ?</p>
         <p>
           price per unit : {formatEther(sale.pricePerUnit)}
@@ -211,6 +280,12 @@
               <p>
                 {numToBuy}
               </p>
+              <p>
+                This will cost {formatEther(sale.pricePerUnit.mul(numToBuy))}
+                {nativeTokenSymbol}
+              </p>
+              <p>(note that you can change your mind as you select the destination planet)</p>
+              <p>(Use that bar to check the price)</p>
             </div>
           </div>
           <div>
