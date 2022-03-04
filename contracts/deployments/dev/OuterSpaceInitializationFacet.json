@@ -1,5 +1,5 @@
 {
-  "address": "0x81Cf8a55B482cE65c5A96348dEB317403a00d9Fc",
+  "address": "0x2FECe5C1e720C373143977DFF6a273D3a2C34C4D",
   "abi": [
     {
       "inputs": [
@@ -9,6 +9,66 @@
               "internalType": "bytes32",
               "name": "genesis",
               "type": "bytes32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "resolveWindow",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timePerDistance",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "exitDuration",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint32",
+              "name": "acquireNumSpaceships",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "productionSpeedUp",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "frontrunningDelay",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "productionCapAsDuration",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "upkeepProductionDecreaseRatePer10000th",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "fleetSizeFactor6",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint32",
+              "name": "initialSpaceExpansion",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "expansionDelta",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "giftTaxPer10000",
+              "type": "uint256"
             }
           ],
           "internalType": "struct OuterSpaceInitializationFacet.Config",
@@ -232,33 +292,81 @@
       "inputs": [
         {
           "indexed": false,
-          "internalType": "uint32",
-          "name": "minX",
-          "type": "uint32"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint32",
-          "name": "maxX",
-          "type": "uint32"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint32",
-          "name": "minY",
-          "type": "uint32"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint32",
-          "name": "maxY",
-          "type": "uint32"
-        },
-        {
-          "indexed": false,
           "internalType": "bytes32",
           "name": "genesis",
           "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "resolveWindow",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timePerDistance",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "exitDuration",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "acquireNumSpaceships",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "productionSpeedUp",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "frontrunningDelay",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "productionCapAsDuration",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "upkeepProductionDecreaseRatePer10000th",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "fleetSizeFactor6",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "initialSpaceExpansion",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "expansionDelta",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "giftTaxPer10000",
+          "type": "uint256"
         }
       ],
       "name": "Initialized",
@@ -477,5 +585,8 @@
       "stateMutability": "nonpayable",
       "type": "function"
     }
-  ]
+  ],
+  "receipt": {
+    "blockNumber": 20936865
+  }
 }

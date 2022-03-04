@@ -1,5 +1,5 @@
 {
-  "address": "0x171b33E5ec357ffef018661E0Dd5a83298Ea3A23",
+  "address": "0x03858FF5c6d76A807a7f1B916b8915DE609cAeaf",
   "abi": [
     {
       "inputs": [
@@ -7,6 +7,11 @@
           "internalType": "contract AllianceRegistry",
           "name": "allianceRegistry",
           "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "baseURI",
+          "type": "string"
         }
       ],
       "stateMutability": "nonpayable",
@@ -56,6 +61,19 @@
       "type": "function"
     },
     {
+      "inputs": [],
+      "name": "frontendURI",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "bytes32",
@@ -72,6 +90,19 @@
         }
       ],
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "baseURI",
+          "type": "string"
+        }
+      ],
+      "name": "init",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -151,6 +182,6 @@
     }
   ],
   "receipt": {
-    "blockNumber": 20869403
+    "blockNumber": 20936714
   }
 }
