@@ -71,7 +71,7 @@
         $context.planet.info.location.id,
         parseEther((pricePer10000 / 10000).toFixed(18)),
         numSpaceshipsToKeep,
-        numSpaceshipsToSell,
+        numSpaceshipsToSell == 0 ? 0xFFFFFFFFFF : numSpaceshipsToSell,
       ]
     );
 
@@ -192,7 +192,7 @@
         <div>
           <label for="numSpaceshipsToSell"
             ><p><strong>Num of spaceship to sell</strong> (stop selling afterward)</p>
-            {#if numSpaceshipsToSell < maxSell}<p>
+            {#if numSpaceshipsToSell > 0}<p>
                 (assuming all sell, you ll get {(pricePer10000 * numSpaceshipsToSell) / 10000}
                 {nativeTokenSymbol})
               </p>{/if}
@@ -209,7 +209,7 @@
             />
             <p>
               => <strong
-                >{#if numSpaceshipsToSell === maxSell} Infinite {:else} {numSpaceshipsToSell}{/if}</strong
+                >{#if numSpaceshipsToSell === 0} Infinite {:else} {numSpaceshipsToSell}{/if}</strong
               >
             </p>
           </div>
@@ -234,7 +234,6 @@
         <div>
           <button
             on:click={submit}
-            disabled={numSpaceshipsToSell === 0}
             type="submit"
             class="m-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >Put For Sale</button
