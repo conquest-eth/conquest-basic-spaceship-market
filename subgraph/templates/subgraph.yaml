@@ -22,7 +22,7 @@ dataSources:
       eventHandlers:
         - event: SpaceshipsForSale(indexed uint256,indexed address,uint256,uint256,uint256)
           handler: handleSpaceshipsForSale
-        - event: SpaceshipsSold(indexed uint256,indexed address,uint256)
+        - event: SpaceshipsSold(indexed uint256,indexed address,indexed address,uint256)
           handler: handleSpaceshipsSold
         - event: SaleCancelled(indexed uint256,indexed address)
           handler: handleSaleCancelled

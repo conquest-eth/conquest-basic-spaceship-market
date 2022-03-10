@@ -14,7 +14,12 @@ contract BasicSpaceshipMarket is IApprovalReceiver {
     );
     event SaleCancelled(uint256 indexed location, address indexed owner);
 
-    event SpaceshipsSold(uint256 indexed location, address indexed fleetOwner, uint256 numSpaceships);
+    event SpaceshipsSold(
+        uint256 indexed location,
+        address indexed buyer,
+        address indexed fleetOwner,
+        uint256 numSpaceships
+    );
 
     struct SpaceshipSale {
         uint144 pricePerUnit;
@@ -72,7 +77,8 @@ contract BasicSpaceshipMarket is IApprovalReceiver {
         uint256 location,
         uint32 numSpaceships,
         address payable fleetSender,
-        bytes32 toHash
+        bytes32 toHash,
+        address fleetOwner
     ) external payable {
         SpaceshipSale memory sale = _sales[location];
         (, uint40 ownershipStartTime) = _outerspace.ownerAndOwnershipStartTimeOf(location);
@@ -96,7 +102,7 @@ contract BasicSpaceshipMarket is IApprovalReceiver {
 
         IOuterSpace.FleetLaunch memory launch;
         launch.fleetSender = fleetSender; // this is checked by outerspace
-        launch.fleetOwner = msg.sender;
+        launch.fleetOwner = fleetOwner;
         launch.from = location;
         launch.quantity = numSpaceships;
         launch.toHash = toHash;
@@ -109,7 +115,7 @@ contract BasicSpaceshipMarket is IApprovalReceiver {
             require(planetUpdated.numSpaceships >= sale.spaceshipsToKeep, "TOO_MANY_SPACESHIPS_BOUGHT");
         }
 
-        emit SpaceshipsSold(location, msg.sender, numSpaceships);
+        emit SpaceshipsSold(location, msg.sender, fleetOwner, numSpaceships);
     }
 
     // ----------------------------------------

@@ -110,7 +110,7 @@
       contractAddress: $contractsInfos.contracts.BasicSpaceshipMarket.address,
       numSpaceshipsToKeep: sale.spaceshipsToKeep,
       numSpaceshipsAvailable: sale.spaceshipsLeftToSell,
-      args: [location, '{numSpaceships}', fleetSender, '{toHash}'],
+      args: [location, '{numSpaceships}', fleetSender, '{toHash}', '{fleetOwner}'],
       fleetSender,
       msgValue: '{numSpaceships*pricePerUnit}',
     };
