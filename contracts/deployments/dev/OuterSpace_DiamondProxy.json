@@ -1,5 +1,5 @@
 {
-  "address": "0xb0855eAF94BF7f122AF4F444141e83B7408cC7a7",
+  "address": "0xCD70D4212E8e7217D015Ac286D47d521FA8aeD23",
   "abi": [
     {
       "inputs": [
@@ -432,6 +432,49 @@
       "inputs": [
         {
           "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "location",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "newNumspaceships",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "internalType": "int40",
+          "name": "newTravelingUpkeep",
+          "type": "int40"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "newOverflow",
+          "type": "uint32"
+        }
+      ],
+      "name": "PlanetTransfer",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
           "internalType": "uint256",
           "name": "location",
           "type": "uint256"
@@ -579,6 +622,19 @@
         }
       ],
       "name": "addReward",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "location",
+          "type": "uint256"
+        }
+      ],
+      "name": "debug_reset_exitStartTime",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -1612,6 +1668,6 @@
     }
   ],
   "receipt": {
-    "blockNumber": 20964760
+    "blockNumber": 21053501
   }
 }

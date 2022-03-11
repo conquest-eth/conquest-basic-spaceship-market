@@ -1,5 +1,5 @@
 {
-  "address": "0x48Ab1825239F17845eD4fC57B47F3226D00b78b6",
+  "address": "0x6df9c86b537514d783D82e4395950b93bB675cF3",
   "abi": [
     {
       "inputs": [
@@ -457,6 +457,49 @@
       "inputs": [
         {
           "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "location",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "newNumspaceships",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "internalType": "int40",
+          "name": "newTravelingUpkeep",
+          "type": "int40"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "newOverflow",
+          "type": "uint32"
+        }
+      ],
+      "name": "PlanetTransfer",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
           "internalType": "uint256",
           "name": "location",
           "type": "uint256"
@@ -609,6 +652,19 @@
           "type": "uint256"
         }
       ],
+      "name": "debug_reset_exitStartTime",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "location",
+          "type": "uint256"
+        }
+      ],
       "name": "resetPlanet",
       "outputs": [],
       "stateMutability": "nonpayable",
@@ -616,6 +672,6 @@
     }
   ],
   "receipt": {
-    "blockNumber": 20964750
+    "blockNumber": 21053489
   }
 }
