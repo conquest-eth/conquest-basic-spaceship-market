@@ -2,7 +2,17 @@ import {initWeb3W} from 'web3w';
 import {WalletConnectModuleLoader} from 'web3w-walletconnect-loader';
 import {contractsInfos} from '$lib/blockchain/contracts';
 import {notifications} from '../web/notifications';
-import {webWalletURL, finality, fallbackProviderOrUrl, chainId, localDev} from '$lib/config';
+import {
+  webWalletURL,
+  finality,
+  fallbackProviderOrUrl,
+  chainId,
+  localDev,
+  chainName,
+  nativeTokenSymbol,
+  nativeTokenName,
+  nativeTokenDecimal,
+} from '$lib/config';
 import {isCorrected, correctTime} from '$lib/time';
 import {base} from '$app/paths';
 import {chainTempo} from '$lib/blockchain/chainTempo';
@@ -114,3 +124,30 @@ chainTempo.startOrUpdateProvider(wallet.provider);
 contractsInfos.subscribe(async ($contractsInfo) => {
   await chain.updateContracts($contractsInfo);
 });
+
+export async function switchChain() {
+  let blockExplorerUrls: string[] | undefined;
+  const explorerTXURL = import.meta.env.VITE_BLOCK_EXPLORER_TRANSACTION as string;
+  if (explorerTXURL && explorerTXURL.startsWith('https')) {
+    const url = explorerTXURL.slice(0, explorerTXURL.length - (explorerTXURL.endsWith('/') ? 3 : 2));
+    blockExplorerUrls = [url];
+  }
+  const rpcUrls = [];
+  if (webWalletURL) {
+    rpcUrls.push(webWalletURL);
+  }
+  if (fallbackProviderOrUrl && webWalletURL !== fallbackProviderOrUrl) {
+    rpcUrls.push(fallbackProviderOrUrl);
+  }
+
+  await chain.switchChain(chainId, {
+    chainName,
+    rpcUrls,
+    blockExplorerUrls,
+    nativeCurrency: {
+      name: nativeTokenName,
+      symbol: nativeTokenSymbol,
+      decimals: nativeTokenDecimal,
+    },
+  });
+}

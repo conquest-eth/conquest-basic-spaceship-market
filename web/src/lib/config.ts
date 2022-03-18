@@ -10,6 +10,9 @@ let root = undefined;
 if (typeof window !== 'undefined') {
   root = window.location.protocol + '//' + window.location.host + (window as any).BASE;
 }
+
+const version = __VERSION__;
+
 console.log(`VERSION: ${__VERSION__}`);
 
 export const hashParams = getHashParamsFromLocation();
@@ -21,6 +24,8 @@ let fallbackProviderOrUrl: string | Provider | undefined;
 let finality = 12;
 let blockTime = 15;
 let nativeTokenSymbol = 'ETH';
+let nativeTokenName = 'ETH';
+let nativeTokenDecimal = 18;
 if (chainId !== '1') {
   finality = 5; // TODO
   blockTime = 10;
@@ -31,6 +36,14 @@ if (chainId === '5') {
   finality = 8; // TODO
   blockTime = 15;
   nativeTokenSymbol = 'ETH';
+}
+
+if (chainId === '100') {
+  finality = 8; // TODO
+  blockTime = 5;
+  nativeTokenSymbol = 'XDAI';
+  nativeTokenName = 'XDAI';
+  nativeTokenDecimal = 18;
 }
 
 let webWalletURL: string | undefined = import.meta.env.VITE_WEB_WALLET_ETH_NODE as string | undefined;
@@ -148,6 +161,8 @@ export {
   blockTime,
   chainName,
   nativeTokenSymbol,
+  nativeTokenName,
+  nativeTokenDecimal,
   graphNodeURL,
   logPeriod,
   lowFrequencyFetch,
@@ -157,6 +172,7 @@ export {
   deletionDelay,
   localDev,
   setGetName,
+  version,
 };
 
 if (typeof window !== 'undefined') {

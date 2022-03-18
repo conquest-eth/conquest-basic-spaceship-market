@@ -4,7 +4,7 @@
   import NavButton from '$lib/components/styled/navigation/NavButton.svelte';
   import Modal from '$lib/components/styled/Modal.svelte';
   import {base} from '$app/paths';
-  import {wallet, builtin, chain, flow, fallback} from '$lib/blockchain/wallet';
+  import {wallet, builtin, chain, flow, fallback, switchChain} from '$lib/blockchain/wallet';
 
   $: executionError = $flow.executionError as any;
 
@@ -39,22 +39,6 @@
 
   function acknowledgeNewGenesis() {
     chain.acknowledgeNewGenesisHash();
-  }
-
-  async function switchChain() {
-    let blockExplorerUrls: string[] | undefined;
-    const explorerTXURL = import.meta.env.VITE_BLOCK_EXPLORER_TRANSACTION as string;
-    if (explorerTXURL) {
-      blockExplorerUrls.push(explorerTXURL.slice(0, explorerTXURL.length - 2));
-    }
-    const rpcUrls = [];
-    if (webWalletURL) {
-      rpcUrls.push(webWalletURL);
-    }
-    if (fallbackProviderOrUrl) {
-      rpcUrls.push(fallbackProviderOrUrl);
-    }
-    await chain.switchChain(chainId, {chainName, rpcUrls, blockExplorerUrls});
   }
 </script>
 
