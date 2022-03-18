@@ -1,5 +1,5 @@
 {
-  "address": "0xB67928282F623dA421F6716C7E8ef809039e0BC2",
+  "address": "0x03F900739B325dea36001cC162d880c5296fe442",
   "abi": [
     {
       "inputs": [
@@ -58,6 +58,34 @@
         }
       ],
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "player",
+          "type": "address"
+        },
+        {
+          "internalType": "uint32",
+          "name": "nonce",
+          "type": "uint32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "signature",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes",
+          "name": "inviteSignature",
+          "type": "bytes"
+        }
+      ],
+      "name": "claimInvite",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -149,6 +177,25 @@
       "inputs": [
         {
           "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "memberNonces",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
           "name": "newAdmin",
           "type": "address"
         },
@@ -182,6 +229,6 @@
     }
   ],
   "receipt": {
-    "blockNumber": 21053548
+    "blockNumber": 21170444
   }
 }

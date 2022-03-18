@@ -1,5 +1,5 @@
 {
-  "address": "0x6df9c86b537514d783D82e4395950b93bB675cF3",
+  "address": "0x6b2f9240C10C8A9203b9e4dfab74077D3eC675E9",
   "abi": [
     {
       "inputs": [
@@ -169,63 +169,72 @@
         },
         {
           "indexed": false,
-          "internalType": "uint32",
-          "name": "fleetLoss",
-          "type": "uint32"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint32",
-          "name": "planetLoss",
-          "type": "uint32"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint32",
-          "name": "inFlightFleetLoss",
-          "type": "uint32"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint32",
-          "name": "inFlightPlanetLoss",
-          "type": "uint32"
-        },
-        {
-          "indexed": false,
           "internalType": "bool",
           "name": "won",
           "type": "bool"
         },
         {
+          "components": [
+            {
+              "internalType": "uint32",
+              "name": "newNumspaceships",
+              "type": "uint32"
+            },
+            {
+              "internalType": "int40",
+              "name": "newTravelingUpkeep",
+              "type": "int40"
+            },
+            {
+              "internalType": "uint32",
+              "name": "newOverflow",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "numSpaceshipsAtArrival",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "taxLoss",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "fleetLoss",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "planetLoss",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "inFlightFleetLoss",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "inFlightPlanetLoss",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "accumulatedDefenseAdded",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "accumulatedAttackAdded",
+              "type": "uint32"
+            }
+          ],
           "indexed": false,
-          "internalType": "uint32",
-          "name": "newNumspaceships",
-          "type": "uint32"
-        },
-        {
-          "indexed": false,
-          "internalType": "int40",
-          "name": "newTravelingUpkeep",
-          "type": "int40"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint32",
-          "name": "newOverflow",
-          "type": "uint32"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint32",
-          "name": "accumulatedDefenseAdded",
-          "type": "uint32"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint32",
-          "name": "accumulatedAttackAdded",
-          "type": "uint32"
+          "internalType": "struct ImportingOuterSpaceEvents.ArrivalData",
+          "name": "data",
+          "type": "tuple"
         }
       ],
       "name": "FleetArrived",
@@ -672,6 +681,6 @@
     }
   ],
   "receipt": {
-    "blockNumber": 21053489
+    "blockNumber": 21170373
   }
 }
