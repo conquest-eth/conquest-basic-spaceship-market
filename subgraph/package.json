@@ -29,6 +29,9 @@
     "deploy": "npm-run-all \"generate -- {1}\" codegen wait:deploy --",
     "hosted:auth": "dotenv -- cross-var graph auth --product hosted-service $THEGRAPH_TOKEN",
     "hosted:redeploy": "echo \"deploying $SUBGRAPH_NAME ...\" && dotenv -- cross-var graph deploy --product hosted-service $SUBGRAPH_NAME",
-    "hosted:deploy": "npm-run-all \"generate -- {1}\" codegen hosted:auth hosted:redeploy --"
+    "hosted:deploy": "npm-run-all \"generate -- {1}\" codegen hosted:auth hosted:redeploy --",
+    "etherplay:create": "dotenv -- cross-var graph create $SUBGRAPH_NAME --access-token=$THEGRAPH_TOKEN --node https://api-subgraphs.etherplay.io || true",
+    "etherplay:redeploy": "echo \"deploying $SUBGRAPH_NAME ...\" && dotenv -- npm run etherplay:create && dotenv -- cross-var graph deploy -l v0.0.1 --deploy-key=$THEGRAPH_TOKEN --ipfs https://ipfs-api-subgraphs.etherplay.io --node https://api-subgraphs.etherplay.io $SUBGRAPH_NAME",
+    "etherplay:deploy": "npm-run-all \"generate -- {1}\" codegen etherplay:redeploy --"
   }
 }
