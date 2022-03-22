@@ -1,5 +1,5 @@
 {
-  "address": "0x02a91A978C8f92246F53C26e7aC45F5e7D0c38fd",
+  "address": "0x2304b17b5E579D0f874Ff4D21177383Ba2F80d39",
   "abi": [
     {
       "inputs": [
@@ -76,6 +76,11 @@
           "internalType": "bytes",
           "name": "signature",
           "type": "bytes"
+        },
+        {
+          "internalType": "uint32",
+          "name": "inviteNonce",
+          "type": "uint32"
         },
         {
           "internalType": "bytes",
@@ -229,6 +234,6 @@
     }
   ],
   "receipt": {
-    "blockNumber": 21223717
+    "blockNumber": 21249607
   }
 }

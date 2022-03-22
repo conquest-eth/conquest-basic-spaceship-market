@@ -210,6 +210,17 @@ async function performAction(rawArgs) {
     await execute(
       `${env}npm --prefix contracts run verify ${network} ${extra.length > 0 ? `-- ${extra.join(' ')}` : ''}`
     );
+  } else if (firstArg === 'contracts:sourcify') {
+    const {fixedArgs, extra} = parseArgs(args, 1, {});
+    const network = fixedArgs[0];
+    if (!network) {
+      console.error(`need to specify the network as first argument`);
+      return;
+    }
+    const env = getEnv(network);
+    await execute(
+      `${env}npm --prefix contracts run sourcify ${network} ${extra.length > 0 ? `-- ${extra.join(' ')}` : ''}`
+    );
   } else if (firstArg === 'tenderly:push') {
     const {fixedArgs} = parseArgs(args, 1, {});
     const network = fixedArgs[0] || 'localhost';

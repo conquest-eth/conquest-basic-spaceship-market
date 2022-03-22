@@ -1,5 +1,5 @@
 {
-  "address": "0x757442037dd42b5E05ac0a5A9170c521AFc4dAE2",
+  "address": "0xD6C1149caEe845E9762bc703Ae11fcF46931fFBE",
   "abi": [
     {
       "inputs": [
@@ -784,8 +784,5 @@
       "stateMutability": "view",
       "type": "function"
     }
-  ],
-  "receipt": {
-    "blockNumber": 21223690
-  }
+  ]
 }

@@ -86,6 +86,14 @@ async function performAction(rawArgs) {
       return;
     }
     await execute(`hardhat --network ${network} etherscan-verify ${extra.join(' ')}`);
+  } else if (firstArg === 'sourcify') {
+    const {fixedArgs, extra} = parseArgs(args, 1, {});
+    const network = fixedArgs[0];
+    if (!network) {
+      console.error(`need to specify the network as first argument`);
+      return;
+    }
+    await execute(`hardhat --network ${network} sourcify ${extra.join(' ')}`);
   } else if (firstArg === 'export') {
     const {fixedArgs} = parseArgs(args, 2, {});
     await execute(`hardhat --network ${fixedArgs[0]} export --export ${fixedArgs[1]}`);
