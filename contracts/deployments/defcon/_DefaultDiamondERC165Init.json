@@ -1,0 +1,23 @@
+{
+  "address": "0xe68d85348f227d2ebEE814C38918F8A2D7d9B603",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4[]",
+          "name": "interfaceIds",
+          "type": "bytes4[]"
+        },
+        {
+          "internalType": "bytes4[]",
+          "name": "interfaceIdsToRemove",
+          "type": "bytes4[]"
+        }
+      ],
+      "name": "setERC165",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
+}
