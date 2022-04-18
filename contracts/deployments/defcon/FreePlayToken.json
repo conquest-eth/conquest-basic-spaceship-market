@@ -1,5 +1,5 @@
 {
-  "address": "0xBd268bd7Cf9D1dd3bfFC1b32530d7d117A3Fac99",
+  "address": "0xf023f6Fa662047D7921B1AEC797470A76CFC9f5b",
   "abi": [
     {
       "anonymous": false,
@@ -479,6 +479,42 @@
       "inputs": [
         {
           "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "mintViaNativeToken",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "mintViaNativeTokenPlusSendExtraNativeTokens",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
           "name": "",
           "type": "address"
         }
@@ -828,6 +864,6 @@
     }
   ],
   "receipt": {
-    "blockNumber": 21691846
+    "blockNumber": 21704497
   }
 }

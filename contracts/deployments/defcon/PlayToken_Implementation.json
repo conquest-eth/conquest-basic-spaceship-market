@@ -1,11 +1,11 @@
 {
-  "address": "0x976d4FB6ab79D5a066DC1c34b686ED373f46527c",
+  "address": "0xceC6025ae9cB77aedF2b0DC14ea6A7cCcb44859c",
   "abi": [
     {
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "numTokensPerNativeTokenAt18Decimals",
+          "name": "_numTokensPerNativeTokenAt18Decimals",
           "type": "uint256"
         }
       ],
@@ -330,6 +330,19 @@
       "type": "function"
     },
     {
+      "inputs": [],
+      "name": "numTokensPerNativeTokenAt18Decimals",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "address",
@@ -587,6 +600,6 @@
     }
   ],
   "receipt": {
-    "blockNumber": 21691842
+    "blockNumber": 21704493
   }
 }

@@ -1,10 +1,10 @@
 {
-  "address": "0x5578919B085891B828fF7c2a060A27fE8D84CF75",
+  "address": "0x5A672C4104BD664D9eC070769De399C3b8BfC3B1",
   "abi": [
     {
       "inputs": [
         {
-          "internalType": "contract IERC20",
+          "internalType": "contract PlayToken",
           "name": "underlyingToken",
           "type": "address"
         }
@@ -368,6 +368,42 @@
       "inputs": [
         {
           "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "mintViaNativeToken",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "mintViaNativeTokenPlusSendExtraNativeTokens",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
           "name": "",
           "type": "address"
         }
@@ -696,6 +732,6 @@
     }
   ],
   "receipt": {
-    "blockNumber": 21691845
+    "blockNumber": 21704496
   }
 }

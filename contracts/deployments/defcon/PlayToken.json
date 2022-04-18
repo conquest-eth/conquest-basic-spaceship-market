@@ -1,5 +1,5 @@
 {
-  "address": "0xf1782f189A13d01d313A075aDD5673737C7D1674",
+  "address": "0x27B84C84a0809AE26381b1b9595fF22cB209A433",
   "abi": [
     {
       "anonymous": false,
@@ -441,6 +441,19 @@
       "type": "function"
     },
     {
+      "inputs": [],
+      "name": "numTokensPerNativeTokenAt18Decimals",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "address",
@@ -719,6 +732,6 @@
     }
   ],
   "receipt": {
-    "blockNumber": 21691844
+    "blockNumber": 21704495
   }
 }
