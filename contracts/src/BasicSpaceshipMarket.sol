@@ -103,7 +103,8 @@ contract BasicSpaceshipMarket is IApprovalReceiver {
         _outerspace.sendFor(launch);
 
         if (sale.spaceshipsToKeep > 0) {
-            IOuterSpace.Planet memory planetUpdated = _outerspace.getPlanetState(location);
+            // we can call getPlanetState as the plane state has been updated above
+            IOuterSpace.ExternalPlanet memory planetUpdated = _outerspace.getPlanetState(location);
 
             // TODO could update OuterSpace.sendFor function to actually specify the amount left, and then pay for that amount if smaller that what wanted
             require(planetUpdated.numSpaceships >= sale.spaceshipsToKeep, "TOO_MANY_SPACESHIPS_BOUGHT");

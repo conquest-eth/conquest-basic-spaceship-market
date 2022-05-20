@@ -37,5 +37,7 @@ interface IOuterSpacePlanets is ImportingOuterSpaceTypes, ImportingOuterSpaceEve
 
     function getPlanet(uint256 location) external view returns (ExternalPlanet memory state, PlanetStats memory stats);
 
-    function getPlanetState(uint256 location) external view returns (Planet memory state);
+    function getPlanetState(uint256 location) external view returns (ExternalPlanet memory state);
+
+    function getUpdatedPlanetState(uint256 location) external view returns (ExternalPlanet memory state);
 }
