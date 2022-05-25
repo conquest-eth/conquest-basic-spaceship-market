@@ -2,31 +2,33 @@
 
 # Spaceship Market
 
-This is a template to build a decentralised applicaiton using ethereum, hardhat, svelte and thegraph
+# Getting Started
 
-to make an app out of it, execute the following
+Please clone the following repo : https://github.com/conquest-eth/conquest-playground
 
-```
-npx degit wighawag/spaceship-market <your-app-folder>
-```
-
-There also more templates available in branches:
-
-<!-- //TODO
-## NFT version (it includes eip-721-subgraph and a basic "my nfts" page):
+once cloned, cd into it and do the following
 
 ```
-npx degit wighawag/spaceship-market#nft <your-app-folder>
+pnpm i
+pnpm start
 ```
--->
 
----
+Then in this repo, assuming you already cloned it, cd into it and do the following
 
-<br/>
-<br/>
-<!--- -------------------------------------------- -->
+```sh
+pnpm i
+pnpm start -- --import <path-to conquest-playground folder>/contracts/deployments/
+```
 
-# App Setup
+With that you ll get a
+the game running on http://localhost:8080
+the plugin running on http://localhost:3001
+
+Navigate to http://localhost:8080, login in and install the plugin via : http://localhost:8080/plugins by pasting `http://localhost:3001/conquest-plugin.json`
+
+Reload the page
+
+# Detailed Setup
 
 ## requirements :
 

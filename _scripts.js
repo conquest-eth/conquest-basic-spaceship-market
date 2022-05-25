@@ -258,6 +258,12 @@ async function performAction(rawArgs) {
     if (options.waitContracts) {
       await execute(`wait-on web/src/lib/contracts.json`);
     }
+
+    if (extra.indexOf('--port') == -1) {
+      extra.push('--port');
+      extra.push('3001');
+    }
+
     const env = getEnv(network);
     await execute(`${env}npm --prefix web run dev -- ${extra.join(' ')}`);
   } else if (firstArg === 'web:build') {
@@ -319,58 +325,40 @@ async function performAction(rawArgs) {
     const {extra} = parseArgs(args, 0, {});
     execute(`newsh "npm run common:dev"`);
     execute(`newsh "npm run web:dev localhost -- --skipContracts --waitContracts ${extra.join(' ')}"`);
-    execute(`newsh "npm run contracts:node"`);
-    execute(`newsh "npm run contracts:local:dev -- --reset"`);
-    execute(`newsh "npm run subgraph:dev"`);
-    await performAction(['common:build']);
-    await performAction(['contracts:seed', 'localhost', '--waitContracts']);
-  } else if (firstArg === 'dev:conquest') {
-    fs.emptyDirSync('./contracts/deployments/localhost');
-    await execute('rimraf web/src/lib/contracts.json');
-
-    fs.copySync('../conquest-eth/contracts/deployments/localhost', './contracts/deployments/localhost', {
-      recursive: true,
-    });
-    // fs.ensureDirSync(`./contracts/deployments/${network}`);
-    // moveAfterSimplify(`../conquest-eth/contracts/deployments/${network}`, `./contracts/deployments/${network}`);
-
-    const {extra} = parseArgs(args, 0, {});
-
-    execute(`newsh "npm run common:dev"`);
-    execute(`newsh "npm run web:dev localhost -- --skipContracts --waitContracts --port 3001"`); // ${extra.join(' ')}"`);
     execute(`newsh "npm run contracts:local:dev"`);
-    execute(`newsh "wait-on web/src/lib/contracts.json && npm run subgraph:dev"`);
-
-    await performAction(['common:build']);
-    await performAction(['contracts:seed', 'localhost', '--waitContracts']);
-  } else if (firstArg === 'import:conquest') {
-    const {fixedArgs, extra} = parseArgs(args, 1, {});
+    execute(`newsh "npm run subgraph:dev"`);
+  } else if (firstArg === 'import:deployments') {
+    const {fixedArgs} = parseArgs(args, 2);
     const network = fixedArgs[0] || (await getNetworkName());
     if (!network) {
       console.error(`need to specify the network as first argument (or via env: NETWORK_NAME)`);
       return;
     }
 
+    const folderPath = fixedArgs[1];
+
+    if (!folderPath) {
+      console.error(`no import path specified, (do not specify network subfolder, just deployments folder)`);
+      return;
+    }
+
     fs.ensureDirSync(`./contracts/deployments/${network}`);
-    moveAfterSimplify(`../conquest-eth/contracts/deployments/${network}`, `./contracts/deployments/${network}`);
+    moveAfterSimplify(path.join(folderPath, network), `./contracts/deployments/${network}`);
   } else if (firstArg === 'start') {
-    const {extra} = parseArgs(args, 0, {});
-    await execute(`docker-compose down -v --remove-orphans`); // required else we run in race conditions
-    execute(`newsh "npm run externals"`);
+    const {extra, options} = parseArgs(args, 0, {import: 'string'});
+    if (!options.import) {
+      console.error(
+        `no import path specified, specify via --import <folder-path> (do not specify network subfolder, just deployments folder)`
+      );
+      return;
+    }
+
     execute(`newsh "npm run common:dev"`);
     execute(`newsh "npm run web:dev localhost -- --skipContracts --waitContracts ${extra.join(' ')}"`);
-    execute(`newsh "npm run contracts:node"`);
-    execute(`newsh "npm run contracts:local:dev -- --reset"`);
-    execute(`newsh "npm run subgraph:dev"`);
-    await performAction(['common:build']);
-    await performAction(['contracts:seed', 'localhost', '--waitContracts']);
-  } else if (firstArg === 'start:geth') {
-    const {extra} = parseArgs(args, 0, {});
-    await execute(`docker-compose down -v --remove-orphans`); // required else we run in race conditions
-    execute(`newsh "npm run externals:geth"`);
-    execute(`newsh "npm run common:dev"`);
-    execute(`newsh "npm run web:dev localhost -- --skipContracts --waitContracts ${extra.join(' ')}"`);
-    execute(`newsh "npm run contracts:local:dev -- --reset"`);
+    fs.emptyDirSync('./contracts/deployments/localhost');
+    await execute('rimraf web/src/lib/contracts.json');
+    await performAction(['import:deployments', 'localhost', options.import]);
+    execute(`newsh "npm run contracts:local:dev"`);
     execute(`newsh "npm run subgraph:dev"`);
     await performAction(['common:build']);
     await performAction(['contracts:seed', 'localhost', '--waitContracts']);

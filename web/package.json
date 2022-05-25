@@ -48,7 +48,7 @@
     "prepare-for-web": "^0.1.7",
     "prettier": "~2.5.1",
     "prettier-plugin-svelte": "^2.5.1",
-    "spaceship-market-common": "workspace:*",
+    "conquest-eth-common": "workspace:*",
     "svelte": "^3.44.3",
     "svelte-preprocess": "^4.10.1",
     "sveltejs-adapter-ipfs": "0.2.0",
