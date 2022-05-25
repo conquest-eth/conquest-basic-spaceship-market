@@ -46,7 +46,7 @@
     "solhint": "^3.3.6",
     "solhint-plugin-prettier": "^0.0.5",
     "solidity-coverage": "^0.7.18",
-    "conquest-eth-common": "workspace:*",
+    "spaceship-market-common": "workspace:*",
     "ts-generator": "^0.1.1",
     "ts-node": "^10.4.0",
     "typechain": "^7.0.0",
