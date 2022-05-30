@@ -30,6 +30,7 @@
     "@typescript-eslint/parser": "^5.10.2",
     "chai": "^4.3.6",
     "chai-ethers": "^0.0.1",
+    "conquest-eth-contracts": "https://ipfs.io/ipfs/QmRnqW2FReD5Kh3HmajLBs1ntBWavvDUCpdGU1iUndugFP/conquest-eth-contracts-0.1.1.tgz",
     "cross-env": "^7.0.2",
     "dotenv": "^16.0.0",
     "eslint": "^8.8.0",

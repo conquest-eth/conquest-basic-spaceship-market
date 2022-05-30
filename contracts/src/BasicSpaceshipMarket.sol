@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.9;
 
-import "./outerspace/interfaces/IOuterSpace.sol";
-import "./outerspace/interfaces/IApprovalReceiver.sol";
+import "conquest-eth-contracts/src/outerspace/interfaces/IOuterSpace.sol";
+import "conquest-eth-contracts/src/outerspace/interfaces/IApprovalForAllReceiver.sol";
 
-contract BasicSpaceshipMarket is IApprovalReceiver {
+contract BasicSpaceshipMarket is IApprovalForAllReceiver {
     event SpaceshipsForSale(
         uint256 indexed location,
         address indexed owner,

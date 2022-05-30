@@ -64,6 +64,7 @@ importers:
       '@typescript-eslint/parser': ^5.10.2
       chai: ^4.3.6
       chai-ethers: ^0.0.1
+      conquest-eth-contracts: https://ipfs.io/ipfs/QmRnqW2FReD5Kh3HmajLBs1ntBWavvDUCpdGU1iUndugFP/conquest-eth-contracts-0.1.1.tgz
       cross-env: ^7.0.2
       dotenv: ^16.0.0
       eslint: ^8.8.0
@@ -98,6 +99,7 @@ importers:
       '@typescript-eslint/parser': 5.10.2_eslint@8.8.0+typescript@4.5.5
       chai: 4.3.6
       chai-ethers: 0.0.1
+      conquest-eth-contracts: '@ipfs.io/ipfs/QmRnqW2FReD5Kh3HmajLBs1ntBWavvDUCpdGU1iUndugFP/conquest-eth-contracts-0.1.1.tgz'
       cross-env: 7.0.3
       dotenv: 16.0.0
       eslint: 8.8.0
@@ -2574,7 +2576,7 @@ packages:
   /axios/0.21.4_debug@4.3.3:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
-      follow-redirects: 1.14.9
+      follow-redirects: 1.14.9_debug@4.3.3
     transitivePeerDependencies:
       - debug
     dev: true
@@ -6304,6 +6306,18 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dev: true
+
+  /follow-redirects/1.14.9_debug@4.3.3:
+    resolution: {integrity: sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.3
     dev: true
 
   /foreach/2.0.5:
@@ -14629,6 +14643,13 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  '@ipfs.io/ipfs/QmRnqW2FReD5Kh3HmajLBs1ntBWavvDUCpdGU1iUndugFP/conquest-eth-contracts-0.1.1.tgz':
+    resolution: {tarball: https://ipfs.io/ipfs/QmRnqW2FReD5Kh3HmajLBs1ntBWavvDUCpdGU1iUndugFP/conquest-eth-contracts-0.1.1.tgz}
+    name: conquest-eth-contracts
+    version: 0.1.1
+    engines: {node: '>= 14.0.0'}
     dev: true
 
   github.com/hugomrdias/concat-stream/057bc7b5d6d8df26c8cf00a3f151b6721a0a8034:
