@@ -80,7 +80,7 @@ contract BasicSpaceshipMarket is IApprovalForAllReceiver {
         require(sale.timestamp > ownershipStartTime, "OWNERSHIP_CHANGED_SALE_OUTDATED");
 
         // TODO use a min-max and avoid revert this way ?
-        require(sale.spaceshipsLeftToSell > numSpaceships, "NOT_ENOUGH_ON_SALE");
+        require(sale.spaceshipsLeftToSell >= numSpaceships, "NOT_ENOUGH_ON_SALE");
 
         // TODO special case for 0xFFFFF to indicate I want to sell for ever
         // if (sale.spaceshipsLeftToSell != 2**40-1) {
